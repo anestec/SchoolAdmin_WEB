@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diário de Classe</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .media-header {
+            text-align: center;
+        }
+
+        .fixo-direita {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px; /* Defina a largura conforme necessário */
+            border: 1px solid #ccc;
+            padding: 20px;
+            overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+            height: 100%; /* Define a altura como a altura da janela */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Diário de Classe</h1>
+
+        <div class="form-group">
+            <label for="turmas">Selecionar Turma:</label>
+            <select class="form-control" id="turmas" onchange="selecionarTurma()">
+                <option value="turma1">Turma 1</option>
+                <option value="turma2">Turma 2</option>
+                <!-- Adicione as turmas dinamicamente, se desejar -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="atividade">Adicionar Atividade:</label>
+            <input type="text" class="form-control" id="atividade" placeholder="Nome da atividade">
+            <button class="btn btn-primary mt-2" onclick="adicionarAtividade()">Adicionar Atividade</button>
+        </div>
+
+        
+
+        <h3>Notas Atividades</h3>
+        <div class="row">
+            <div class="col-sm-7" style="overflow-x: auto;">
+                <table class="table col-sm-3">
+                    <thead>
+                        <!-- <tr>
+                            <th>Nome</th>
+                            <th>Atividades</th>
+                        </tr> -->
+                        <tr id="atividades-header-row">
+                            <!-- As colunas das atividades serão adicionadas aqui -->
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="alunos-list">
+                        
+                        <!-- Alunos e notas serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+                <div class="col-sm-4">
+                    <h3>Médias dos Alunos</h3>
+                    <table class="table col-sm-4">
+                        <thead>
+                            <tr id="medias-header-row">
+                                <!-- Colunas de média dos alunos serão exibidas aqui -->
+                            </tr>
+                        </thead>
+                        <tbody id="medias-list">
+                            <!-- Médias dos alunos serão carregadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let turmaSelecionada;
+        let atividades = [];
+
+        function selecionarTurma() {
+            turmaSelecionada = document.getElementById('turmas').value;
+            carregarAlunos();
+        }
+
+        function adicionarAtividade() {
+            const atividade = document.getElementById('atividade').value;
+
+            if (!atividades.includes(atividade)) {
+                atividades.push(atividade);
+                adicionarAtividadeNaTabela();
+            } else {
+                alert('Atividade já existe!'); // Ou realize outra ação para indicar que a atividade já foi adicionada
+            }
+        }
+
+        function adicionarAtividadeNaTabela() {
+            const atividadesHeaderRow = document.getElementById('atividades-header-row');
+
+            if (atividadesHeaderRow.children.length === 0) {
+                const thNomeVazio = document.createElement('th');
+                thNomeVazio.textContent = 'Nomes'; // Adicione qualquer texto necessário
+                atividadesHeaderRow.appendChild(thNomeVazio);
+            }
+
+            atividades.forEach((atividade) => {
+                if (!atividadesHeaderRow.querySelector(`th[data-atividade="${atividade}"]`)) {
+                    const newTh = document.createElement('th');
+                    newTh.textContent = atividade;
+                    newTh.setAttribute('data-atividade', atividade);
+                    atividadesHeaderRow.appendChild(newTh);
+                }
+            });
+
+            carregarAlunos();
+        }
+
+        function carregarAlunos() {
+            // Simulação de alunos fictícios carregados ao selecionar a turma
+            const tabelaAlunos = document.getElementById('alunos-list');
+            tabelaAlunos.innerHTML = '';
+
+            const alunosFicticios = [
+                'Aluno 1',
+                'Aluno 2',
+                'Aluno 3',
+                'Aluno 4',
+                'Aluno 5'
+            ];
+
+            alunosFicticios.forEach((aluno) => {
+                const newRow = tabelaAlunos.insertRow();
+                newRow.innerHTML = `
+                    <td>${aluno}</td>
+                    ${gerarNotas()}
+                    <td></td>
+                `;
+            });
+        }
+
+        function gerarNotas() {
+            let notas = '';
+            atividades.forEach(() => {
+                notas += `<td><input type="number" step="0.1" oninput="atualizarNota(this)"></td>`;
+            });
+            return notas;
+        }
+
+        function atualizarNota(input) {
+            const row = input.parentNode.parentNode;
+            const index = Array.from(row.cells).indexOf(input.parentNode);
+            const aluno = row.cells[0].textContent;
+            const atividade = atividades[index - 1];
+            const nota = input.value;
+            const media = calcularMedia(row);
+            console.log(`Nota de ${aluno} para ${atividade}: ${nota}`);
+            row.cells[row.cells.length - 1].textContent = media.toFixed(2);
+        }
+
+        function calcularMedia(row) {
+            let total = 0;
+            let count = 0;
+
+            for (let i = 1; i < row.cells.length - 1; i++) {
+                const nota = parseFloat(row.cells[i].querySelector('input').value);
+                if (!isNaN(nota)) {
+                    total += nota;
+                    count++;
+                }
+            }
+
+            return total / count;
+        }
+    </script>
+</body>
+
+</html>

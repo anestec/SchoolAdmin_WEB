@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        .contacts {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 500px;
+            overflow-y: scroll;
+        }
+
+        .contact {
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+        }
+
+        .conversation {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 500px;
+        }
+
+        .messages {
+            height: 420px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+
+        .new-message {
+            display: flex;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+       
+    </style>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">School<sup>Admin</sup></div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Serviços
+            </div>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <!-- <i class="fas fa-fw fa-cog"></i> -->
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Secretaria</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Relatórios:</h6>
+                        <a class="collapse-item" href="#">Certificado e Diplomas</a>
+                        <a class="collapse-item" href="#">Histórico Escolar</a>
+                        <h6 class="collapse-header">Conselho de Classe:</h6>
+                        <a class="collapse-item" href="#">Carometro</a>
+                        <a class="collapse-item" href="#">Boletins</a>                        
+                        <h6 class="collapse-header">Adminstrativo:</h6>
+                        <a class="collapse-item" href="#">Cadastro de Aluno</a>
+                        <a class="collapse-item" href="#">Carterinha</a>
+                        <a class="collapse-item" href="#">Bilhete - Transporte</a>
+                        <h6 class="collapse-header">Processo Seletivo:</h6>
+                        <a class="collapse-item" href="#">Cadastro de Candidatos</a>
+                        <a class="collapse-item" href="#">Aprovação de Candidatos</a>
+                        <h6 class="collapse-header">Aulas:</h6>
+                        <a class="collapse-item" href="#">Disciplinas</a>
+                        <a class="collapse-item" href="#">Agenda Professores</a>
+                        <a class="collapse-item" href="#">Calendário Escolar</a>
+                        <a class="collapse-item" href="horario_de_aulas.html">Horário de Aulas</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <!-- <i class="fas fa-fw fa-wrench"></i> -->
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Professor</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Sessão 1:</h6> -->
+                        <h6 class="collapse-header">Diário de Classe:</h6>
+                        <a class="collapse-item" href="#">Presença</a>
+                        <a class="collapse-item" href="./diario_atividades.html">Atividades</a>
+                        <h6 class="collapse-header">Planos:</h6>
+                        <a class="collapse-item" href="./plano_aulas.html">Aula</a>
+                        <a class="collapse-item" href="./plano_ensino.html">Ensino</a>
+                        <h6 class="collapse-header">Fechamento de notas:</h6>
+                        <h6 class="collapse-header">Medidas Disciplinares:</h6>
+                        <a class="collapse-item" href="./advertencia.html">Advertencia</a>
+                        <a class="collapse-item" href="./notificacao.html">Notificação</a>
+                        <a class="collapse-item" href="./suspensao.html">Suspensão</a>
+                        <div class="collapse-divider"></div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Aluno</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Mural:</h6>
+                        <a class="collapse-item" href="./calendario.html">Calendário</a>
+                        <a class="collapse-item" href="./horario_de_aulas.html">Horário de Aulas</a>
+                        <a class="collapse-item" href="./avisos_semanal.html">Aviso Semanal</a>
+                        <h6 class="collapse-header">Comunicação:</h6>
+                        <a class="collapse-item" href="./fale_professor.html">Fale com Professor</a>
+                        <a class="collapse-item" href="./fale_secretaria.html">Fale com a Secretaria</a>
+                        <div class="collapse-divider"></div>
+                        
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">            
+        </ul>
+        <!-- End of Sidebar -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Conteúdo do topo da página -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Mais conteúdo do topo -->
+                    </ul>
+                </nav>
+
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-3">
+                            <h2>Conversas</h2>
+                            <div class="input-group mb-3">
+                                <input type="text" id="searchProfessor" class="form-control" placeholder="Buscar Professores" onkeyup="searchProfessors()">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary search-button" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action" onclick="showConversation('professor1')">Professor João</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="showConversation('professor2')">Professor Ana</a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="showConversation('professor3')">Professor Maria</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <h2>Conversa com: <span id="selectedConversation">Nenhum</span></h2>
+                            <div class="border rounded p-3 mb-3" style="height: 300px; overflow-y: scroll;" id="messages">
+                                <!-- Exibirá as mensagens da conversa -->
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="messageInput" class="form-control" placeholder="Digite sua mensagem">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onclick="sendMessage()">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <script src="fale_professor.js"></script>
+            </div>
+            <script src="fale_professor.js"></script>
+
+            <footer class="sticky-footer bg-white d-flex">
+                <div class="container d-flex justify-content-center my-auto">
+                    <!-- Conteúdo do rodapé -->
+                    <span class="text-center">Copyright &copy; Anestec 2023</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="./js/fale_professor.js"></script>
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Outros scripts e funcionalidades -->
+</body>
+
+</html>
